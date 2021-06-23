@@ -1,20 +1,15 @@
 <article>
   <h2>Editable Dynamic Table</h2>
   <table mat-table [dataSource]="dataSource">
-    <!-- Name col -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef scope="col">Name</th>
-      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-    </ng-container>
-    <!-- Occupation col -->
-    <ng-container matColumnDef="occupation">
-      <th mat-header-cell *matHeaderCellDef scope="col">Occupation</th>
-      <td mat-cell *matCellDef="let element">{{ element.occupation }}</td>
-    </ng-container>
-    <!-- Age col -->
-    <ng-container matColumnDef="age">
-      <th mat-header-cell *matHeaderCellDef scope="col">Age</th>
-      <td mat-cell *matCellDef="let element">{{ element.age }}</td>
+    <!-- Col -->
+    <ng-container [matColumnDef]="col" *ngFor="let col of displayColumns">
+      <th mat-header-cell *matHeaderCellDef scope="col">{{ col }}</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-form-field>
+          <mat-label>{{ col }}</mat-label>
+          <input type="dataSchema[col]" matInput [(ngModel)]="element[col]">
+        </mat-form-field>
+      </td>
     </ng-container>
     <!-- table header and rows definition -->
     <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>

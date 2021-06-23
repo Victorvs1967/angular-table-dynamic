@@ -6,15 +6,24 @@ const USER_INFO = [
   {"name": "Peter Adams", "occupation": "HR", "age": 20},
   {"name": "Lora Bay", "occupation": "Marketing", "age": 43}
 ]
+
+const USER_SCHEMA = {
+  name: "text",
+  occupation: "text",
+  age: "number",
+};
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
-  dataSource = USER_INFO;
-  displayColumns: string[] = ['name', 'occupation', 'age'];
-
   
+  displayColumns: string[] = ['name', 'occupation', 'age', 'edit'];
+  
+  dataSource = USER_INFO;
+  dataSchema = USER_SCHEMA;
+
+
 }
