@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 
 const MATERIAL_COMPONENTS = [
   MatTableModule,
@@ -13,11 +14,16 @@ const MATERIAL_COMPONENTS = [
   MatInputModule,
   MatFormFieldModule,
   MatDatepickerModule,
+  MatNativeDateModule
 ];
 
 @NgModule({
   declarations: [],
   imports: MATERIAL_COMPONENTS,
   exports: MATERIAL_COMPONENTS,
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+  ],
+
 })
 export class MaterialUiModule { }
