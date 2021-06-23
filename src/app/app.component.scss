@@ -1,7 +1,14 @@
 article {
   width: 90%;
   margin: auto;
+  padding: 40px;
 }
 table {
   width: 100%;
+}
+.btn-edit {
+  text-align: right;
+}
+th, td {
+  width: 33%;
 }

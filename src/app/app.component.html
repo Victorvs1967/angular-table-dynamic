@@ -3,12 +3,25 @@
   <table mat-table [dataSource]="dataSource">
     <!-- Col -->
     <ng-container [matColumnDef]="col" *ngFor="let col of displayColumns">
-      <th mat-header-cell *matHeaderCellDef scope="col">{{ col }}</th>
+      <th mat-header-cell *matHeaderCellDef scope="col"><span *ngIf="col !== 'edit'">{{ col }}</span></th>
       <td mat-cell *matCellDef="let element">
-        <mat-form-field>
-          <mat-label>{{ col }}</mat-label>
-          <input type="dataSchema[col]" matInput [(ngModel)]="element[col]">
-        </mat-form-field>
+        <div *ngIf="!element.isEdit">
+          <div class="btn-edit" *ngIf="col === 'edit'; spanHeader">
+            <button mat-raised-button color="primary" (click)="element.isEdit = !element.isEdit">Edit</button>
+          </div>
+          <span #spanHeader>{{ element[col] }}</span>
+        </div>
+        <div *ngIf="element.isEdit">
+          <div class="btn-edit" *ngIf="col === 'edit'; else dataField">
+            <button mat-raised-button color="accent" (click)="element.isEdit = !element.isEdit">Done</button>
+          </div>
+        </div>
+        <ng-template #dataField>
+          <mat-form-field>
+            <mat-label>{{ col }}</mat-label>
+            <input type="dataSchema[col]" matInput [(ngModel)]="element[col]">
+          </mat-form-field>
+        </ng-template>
       </td>
     </ng-container>
     <!-- table header and rows definition -->
